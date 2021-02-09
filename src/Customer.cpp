@@ -1,6 +1,12 @@
 #include "Customer.h"
 #include <random>   // std::random
 
+/**
+ * @brief Given the vector of meals, generate a random selection from the vector.
+ *
+ * @param menu Vector of meal objects
+ * @return std::unique_ptr<MealOrder>
+ */
 std::unique_ptr<MealOrder> Customer::makeOrder(const std::vector<Meal> menu)
 {
     auto _numMealsOffered = menu.size();

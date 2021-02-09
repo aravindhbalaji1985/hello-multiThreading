@@ -4,6 +4,8 @@
 #include <sstream>      // std::ostringstream
 #include <mutex>        // std::mutex
 
+// NOTE: This code was done based on the idea detailed in
+// https://stackoverflow.com/questions/2196155/is-there-anyway-to-write-the-following-as-a-c-macro
 class ThreadSafeCout: public std::ostringstream
 {
 public:

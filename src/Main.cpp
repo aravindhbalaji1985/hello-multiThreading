@@ -14,15 +14,22 @@
 #define MAX_TIME 30
 #define OPEN_HOURS 1000 // 1 second.
 
+/**
+ * @brief Simulate a day in the restaurant
+ *
+ * @param menu Vectors of meals to choose from
+ */
 void simulateADay(const std::vector<Meal> menu)
 {
     // Declare the day open and instantiate the workers. The restaurant has a
     // chef and waiters to keep the orders moving.
     RestaurantStatus resStatus {RestaurantStatus::open};
 
+    // Create the objects for the classes.
     std::shared_ptr<Restaurant> sharedRestaurant(new Restaurant());
     std::shared_ptr<Customer> cust(new Customer());
 
+    // Kick start the chef and the waiter threads.
     std::thread chefTh(&Restaurant::prepareOrder, sharedRestaurant);
     std::thread serverThread (&Restaurant::serveOrder, sharedRestaurant);
 
@@ -31,6 +38,7 @@ void simulateADay(const std::vector<Meal> menu)
         std::cout<<it._name<<std::endl;
 #endif
 
+    // Start the timer thread. Work life balance is very important.
     std::future<void> statusFuture = std::async(std::launch::async,
                                                 [&resStatus]() {
 #ifdef DEBUG
