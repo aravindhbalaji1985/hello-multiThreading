@@ -1,6 +1,11 @@
 #include "Restaurant.h"
 #include "ThreadSafe.h"
 
+/**
+ * @brief Place an order and intimate the chef on the new order.
+ *
+ * @param order MealOrder
+ */
 void Restaurant::placeOrder(std::unique_ptr<MealOrder> &&order)
 {
     std::unique_lock<std::mutex> _placeOrderLock(_orderMtx);
@@ -12,6 +17,10 @@ void Restaurant::placeOrder(std::unique_ptr<MealOrder> &&order)
     _orderBell.notify_one();
 }
 
+/**
+ * @brief Serve the order that has been cooked.
+ *
+ */
 void Restaurant::serveOrder()
 {
     std::random_device _rd;
@@ -34,6 +43,12 @@ void Restaurant::serveOrder()
         std::this_thread::sleep_for(std::chrono::milliseconds(_randomWait(_eng)));
     }
 }
+
+/**
+ * @brief Prepare the order and intimate the waiter once the order is ready to
+ * be served.
+ *
+ */
 
 void Restaurant::prepareOrder()
 {
