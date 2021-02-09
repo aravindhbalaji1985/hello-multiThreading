@@ -1,0 +1,6 @@
+Sandwich 30
+Burrito 25
+Curry 60
+RiceWithCurry 75
+BurgerWithFries 20
+DoubleWhopper 30
